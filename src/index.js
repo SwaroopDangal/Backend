@@ -1,60 +1,19 @@
 import dotenv from "dotenv";
-
+import { app } from "./app.js";
 import connectDB from "./db/index.js";
 
-dotenv.config({
-  path: "./env",
-});
+dotenv.config({ path: "./.env" });
+
 connectDB()
   .then(() => {
-    app.listen(process.env.PORT || 8000, () => {
-      console.log(`Server is running at ${process.env.PORT}`);
+    const PORT = process.env.PORT || 8000;
+    app.listen(PORT, () => {
+      console.log(`🚀 Server is running at http://localhost:${PORT}`);
     });
   })
   .catch((err) => {
-    console.log("MONGO DB COnnection failed !!");
+    console.error("❌ MongoDB connection failed:", err.message);
   });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // import express from "express";
-// const app = express();
 
 // (async () => {
 //   try {
